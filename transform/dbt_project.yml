@@ -1,0 +1,14 @@
+name: "mini_mds"
+version: "1.0.0"
+config-version: 2
+
+profile: "mini_mds"
+
+model-paths: ["models"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  +materialized: view
