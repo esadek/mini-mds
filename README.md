@@ -48,6 +48,7 @@ python dash/app.py
 
 ```
 mini-mds
+├── .github/                # GitHub workflows
 ├── dash/                   # Dash application
 ├── dbt/                    # dbt project
 ├── duckdb/                 # DuckDB warehouse
