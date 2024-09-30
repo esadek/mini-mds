@@ -4,7 +4,7 @@ from prefect import flow
 from prefect_dbt.cli.commands import DbtCoreOperation
 
 folder_path = os.path.dirname(os.path.abspath(__file__))
-project_path = os.path.abspath(os.path.join(folder_path, "..", "transform"))
+project_path = os.path.abspath(os.path.join(folder_path, "..", "dbt"))
 
 @flow
 def transform() -> str:

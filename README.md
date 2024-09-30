@@ -35,24 +35,24 @@ python scripts/add_profile.py
 Extract, validate, load and transform data:
 
 ```bash
-python pipelines/elt.py
+python prefect/elt.py
 ```
 
 Visualize data:
 
 ```bash
-python visualize/app.py
+python dash/app.py
 ```
 
 ## Project Structure
 
 ```
 mini-mds
-├── data/                   # DuckDB warehouse
-├── pipelines/              # Prefect workflows
+├── dash/                   # Dash application
+├── dbt/                    # dbt project
+├── duckdb/                 # DuckDB warehouse
+├── prefect/                # Prefect workflows
 ├── scripts/                # Scripts
-├── transform/              # dbt project
-├── visualize/              # Dash application
 ├── .gitignore              # Untracked files to ignore
 ├── LICENSE                 # MIT license
 ├── README.md               # Documentation

@@ -5,7 +5,7 @@ import plotly.express as px
 from dash import Dash, dcc, html
 
 folder_path = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.abspath(os.path.join(folder_path, "..", "data", "duck.db"))
+db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "data.db"))
 
 con = duckdb.connect(db_path)
 df = con.sql("SELECT * FROM main.titanic").df()
