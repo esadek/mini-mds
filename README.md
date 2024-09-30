@@ -1,5 +1,9 @@
 # Mini MDS
 
+[![Build](https://img.shields.io/github/actions/workflow/status/esadek/mini-mds/ci.yml)](https://github.com/esadek/mini-mds/actions/workflows/ci.yml)
+[![Size](https://img.shields.io/github/repo-size/esadek/mini-mds)](https://github.com/esadek/mini-mds/tree/main)
+[![License](https://img.shields.io/github/license/esadek/mini-mds)](https://github.com/esadek/mini-mds/blob/main/LICENSE)
+
 Lightweight, open source, locally-hosted Modern Data Stack
 
 - Extract & Load: [dlt](https://dlthub.com/)
