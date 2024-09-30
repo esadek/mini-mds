@@ -1,7 +1,8 @@
 import os
 
-import duckdb
 import plotly.express as px
+
+import duckdb
 from dash import Dash, dcc, html
 
 folder_path = os.path.dirname(os.path.abspath(__file__))
@@ -22,8 +23,8 @@ app.layout = html.Div(
         html.H2(children="Survivors by Sex"),
         dcc.Graph(figure=px.histogram(df, x="sex", color="survived")),
         html.H2(children="Survivors by Fare"),
-        dcc.Graph(figure=px.histogram(df, x="fare", color="survived", nbins=20))
-    ]
+        dcc.Graph(figure=px.histogram(df, x="fare", color="survived", nbins=20)),
+    ],
 )
 
 if __name__ == "__main__":
