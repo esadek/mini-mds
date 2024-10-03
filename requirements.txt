@@ -4,8 +4,6 @@ dbt-duckdb==1.8.4
 dlt==1.1.0
 duckdb==1.1.1
 great-expectations==0.18.21
-pandas==2.2.3
 plotly==5.24.1
 prefect==3.0.3
 prefect-dbt==0.6.1
-ruff==0.6.8
