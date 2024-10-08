@@ -3,6 +3,7 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/esadek/mini-mds/ci.yml)](https://github.com/esadek/mini-mds/actions/workflows/ci.yml)
 [![Supported Python Versions](https://img.shields.io/badge/python-3.9_%7C_3.10_%7C_3.11_%7C_3.12-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/esadek/mini-mds)](https://github.com/esadek/mini-mds/blob/main/LICENSE)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 Lightweight, open source, locally-hosted Modern Data Stack
 
