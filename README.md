@@ -60,7 +60,9 @@ mini-mds
 ├── prefect/                # Prefect workflows
 ├── scripts/                # Scripts
 ├── .gitignore              # Untracked files to ignore
+├── .python-version         # Default Python version
 ├── LICENSE                 # MIT license
+├── pyproject.toml          # Project metadata
 ├── README.md               # Documentation
-└── requirements.txt        # Python dependencies
+└── uv.lock                 # Dependency lockfile
 ```
