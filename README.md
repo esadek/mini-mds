@@ -16,6 +16,8 @@ Lightweight, open source, locally-hosted Modern Data Stack
 
 ## Installation
 
+Prerequisites: Install [git](https://git-scm.com/) and [uv](https://docs.astral.sh/uv/).
+
 Clone repository and change directory:
 
 ```bash
@@ -23,16 +25,23 @@ git clone https://github.com/esadek/mini-mds.git
 cd mini-mds
 ```
 
+Create and activate virtual environment:
+
+```bash
+uv venv
+source .venv/bin/activate
+```
+
 Install required packages:
 
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 Add dbt connection profile:
 
 ```bash
-python scripts/add_profile.py
+uv run scripts/add_profile.py
 ```
 
 ## Usage
@@ -40,13 +49,13 @@ python scripts/add_profile.py
 Extract, validate, load and transform data:
 
 ```bash
-python prefect/elt.py
+uv run prefect/elt.py
 ```
 
 Visualize data:
 
 ```bash
-python dash/app.py
+uv run dash/app.py
 ```
 
 ## Project Structure
