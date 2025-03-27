@@ -13,7 +13,7 @@ def transform() -> str:
     result = DbtCoreOperation(
         commands=["pwd", "dbt debug", "dbt run"],
         project_dir=project_path,
-        profiles_dir="~/.dbt",
+        profiles_dir=project_path,
     ).run()
     return result
 

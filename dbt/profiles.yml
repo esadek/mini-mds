@@ -1,0 +1,6 @@
+mini_mds:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: duckdb/data.db

@@ -1,5 +1,6 @@
 .DS_Store
 .ruff_cache
+.user.yml
 duckdb/data.db
 
 # Byte-compiled / optimized / DLL files

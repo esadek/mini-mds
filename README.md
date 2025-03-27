@@ -25,25 +25,6 @@ git clone https://github.com/esadek/mini-mds.git
 cd mini-mds
 ```
 
-Create and activate virtual environment:
-
-```bash
-uv venv
-source .venv/bin/activate
-```
-
-Install required packages:
-
-```bash
-uv sync
-```
-
-Add dbt connection profile:
-
-```bash
-uv run scripts/add_profile.py
-```
-
 ## Usage
 
 Extract, validate, load and transform data:
@@ -67,7 +48,6 @@ mini-mds
 ├── dbt/                    # dbt project
 ├── duckdb/                 # DuckDB warehouse
 ├── prefect/                # Prefect workflows
-├── scripts/                # Scripts
 ├── .editorconfig           # Editor configuration
 ├── .gitignore              # Untracked files to ignore
 ├── .python-version         # Default Python version
