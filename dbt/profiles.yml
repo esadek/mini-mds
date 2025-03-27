@@ -3,4 +3,4 @@ mini_mds:
   outputs:
     dev:
       type: duckdb
-      path: duckdb/data.db
+      path: duckdb/warehouse.duckdb

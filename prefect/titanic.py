@@ -7,7 +7,7 @@ import pandas as pd
 from prefect import flow, task
 
 folder_path = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "data.db"))
+db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "warehouse.duckdb"))
 
 
 @task

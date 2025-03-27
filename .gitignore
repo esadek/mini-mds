@@ -1,7 +1,7 @@
 .DS_Store
 .ruff_cache
 .user.yml
-duckdb/data.db
+duckdb/warehouse.duckdb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

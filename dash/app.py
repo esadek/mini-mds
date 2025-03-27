@@ -6,7 +6,7 @@ import duckdb
 from dash import Dash, dcc, html
 
 folder_path = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "data.db"))
+db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "warehouse.duckdb"))
 
 con = duckdb.connect(db_path)
 df = con.sql("SELECT * FROM main.titanic").df()
