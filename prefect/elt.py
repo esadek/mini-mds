@@ -1,4 +1,4 @@
-from titanic import extract_load
+from extract_load import extract_load
 from transform import transform
 
 from prefect import flow
