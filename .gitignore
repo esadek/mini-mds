@@ -1,6 +1,18 @@
+# macOS
 .DS_Store
+
+# Ruff
 .ruff_cache
+
+# dbt
+target/
+dbt_modules/
+logs/
+dbt_packages/
+package-lock.yml
 .user.yml
+
+# DuckDB
 duckdb/warehouse.duckdb
 
 # Byte-compiled / optimized / DLL files
