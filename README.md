@@ -68,6 +68,7 @@ mini-mds
 ├── duckdb/                 # DuckDB warehouse
 ├── prefect/                # Prefect workflows
 ├── scripts/                # Scripts
+├── .editorconfig           # Editor configuration
 ├── .gitignore              # Untracked files to ignore
 ├── .python-version         # Default Python version
 ├── LICENSE                 # MIT license
