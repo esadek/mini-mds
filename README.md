@@ -8,7 +8,7 @@
 Lightweight, open source, locally-hosted Modern Data Stack
 
 - Extract & Load: [dlt](https://dlthub.com/)
-- Data Quality: [Great Expectations](https://greatexpectations.io/)
+- Data Quality: [Pandera](https://www.union.ai/pandera/)
 - Storage: [DuckDB](https://duckdb.org/)
 - Transformation: [dbt](https://www.getdbt.com/)
 - Orchestration: [Prefect](https://www.prefect.io/)

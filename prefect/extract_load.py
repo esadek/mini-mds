@@ -1,8 +1,8 @@
 import os
 
 import dlt
-import great_expectations as gx
-import pandas as pd
+import pandera.polars as pa
+import polars as pl
 
 from prefect import flow, task
 
@@ -11,49 +11,56 @@ db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "warehouse.d
 
 
 @task
-def extract() -> pd.DataFrame:
-    titanic_csv = (
+def extract() -> pl.DataFrame:
+    url = (
         "https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/data/titanic.csv"
     )
-    data = pd.read_csv(titanic_csv)
-    return data
+    df = pl.read_csv(url)
+    return df
 
 
 @task
-def validate(data: pd.DataFrame) -> pd.DataFrame:
-    context = gx.get_context()
-    validator = context.sources.pandas_default.read_dataframe(data)
-    validator.expect_column_values_to_be_unique("PassengerId")
-    validator.expect_column_values_to_be_in_set("Survived", value_set=(0, 1))
-    validator.expect_column_values_to_be_in_set("Pclass", value_set=(1, 2, 3))
-    validator.expect_column_values_to_be_unique("Name")
-    validator.expect_column_values_to_be_in_set("Sex", value_set=("male", "female"))
-    validator.expect_column_values_to_be_between("Age", min_value=0, max_value=80)
-    validator.expect_column_values_to_be_between("SibSp", min_value=0, max_value=8)
-    validator.expect_column_values_to_be_between("Parch", min_value=0, max_value=6)
-    validator.expect_column_values_to_be_of_type("Ticket", type_="object")
-    validator.expect_column_values_to_be_between("Fare", min_value=0, max_value=513)
-    validator.expect_column_values_to_be_of_type("Cabin", type_="object")
-    validator.expect_column_values_to_be_in_set("Embarked", value_set=("S", "C", "Q"))
-    validator.save_expectation_suite(discard_failed_expectations=False)
-    checkpoint = context.add_or_update_checkpoint(
-        name="gx_checkpoint", validator=validator
+def validate(df: pl.DataFrame) -> pl.DataFrame:
+    schema = pa.DataFrameSchema(
+        {
+            "PassengerId": pa.Column(dtype=int, unique=True),
+            "Survived": pa.Column(dtype=int, checks=pa.Check.isin({0, 1})),
+            "Pclass": pa.Column(dtype=int, checks=pa.Check.isin({1, 2, 3})),
+            "Name": pa.Column(dtype=str, unique=True),
+            "Sex": pa.Column(dtype=str, checks=pa.Check.isin({"male", "female"})),
+            "Age": pa.Column(
+                dtype=float,
+                checks=pa.Check.between(min_value=0, max_value=80),
+                nullable=True,
+            ),
+            "SibSp": pa.Column(
+                dtype=int, checks=pa.Check.between(min_value=0, max_value=8)
+            ),
+            "Parch": pa.Column(
+                dtype=int, checks=pa.Check.between(min_value=0, max_value=6)
+            ),
+            "Ticket": pa.Column(dtype=str),
+            "Fare": pa.Column(
+                dtype=float, checks=pa.Check.between(min_value=0, max_value=513)
+            ),
+            "Cabin": pa.Column(dtype=str, nullable=True),
+            "Embarked": pa.Column(
+                dtype=str, checks=pa.Check.isin({"S", "C", "Q"}), nullable=True
+            ),
+        }
     )
-    checkpoint_result = checkpoint.run()
-    if not checkpoint_result.success:
-        run_results = checkpoint_result.run_results
-        raise Exception(f"Validation status: Failed\n{run_results}")
-    return data
+    validated_df = schema(df)
+    return validated_df
 
 
 @task
-def load(data: pd.DataFrame) -> None:
+def load(df: pl.DataFrame) -> None:
     pipeline = dlt.pipeline(
         pipeline_name="titanic_pipeline",
         destination=dlt.destinations.duckdb(db_path),
         dataset_name="raw",
     )
-    load_info = pipeline.run(data.to_dict("records"), table_name="titanic")
+    load_info = pipeline.run(data=df.to_dicts(), table_name="titanic")
     print(load_info)
 
 
