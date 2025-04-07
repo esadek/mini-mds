@@ -24,4 +24,14 @@ dev = [
 ]
 
 [tool.ruff.lint]
-extend-select = ["I"]
+select = [
+    "B",
+    "C",
+    "E",
+    "F",
+    "I",
+    "N",
+    "PTH",
+    "Q",
+    "W",
+]
