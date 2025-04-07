@@ -1,15 +1,13 @@
-import os
+from pathlib import Path
 
 from prefect_dbt.cli.commands import DbtCoreOperation
 
 from prefect import task
 
-folder_path = os.path.dirname(os.path.abspath(__file__))
-project_path = os.path.abspath(os.path.join(folder_path, "..", "dbt"))
-
 
 @task
 def transform() -> str:
+    project_path = Path(__file__).parent.parent / "dbt"
     result = DbtCoreOperation(
         commands=["pwd", "dbt debug", "dbt run"],
         project_dir=project_path,

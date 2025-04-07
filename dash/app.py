@@ -1,13 +1,11 @@
-import os
+from pathlib import Path
 
 import plotly.express as px
 
 import duckdb
 from dash import Dash, dcc, html
 
-folder_path = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "warehouse.duckdb"))
-
+db_path = Path(__file__).parent.parent / "duckdb" / "warehouse.duckdb"
 con = duckdb.connect(db_path)
 df = con.sql("SELECT * FROM main.titanic").df()
 con.close()

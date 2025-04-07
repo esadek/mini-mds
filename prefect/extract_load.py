@@ -1,13 +1,10 @@
-import os
+from pathlib import Path
 
 import dlt
 import pandera.polars as pa
 import polars as pl
 
 from prefect import flow, task
-
-folder_path = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.abspath(os.path.join(folder_path, "..", "duckdb", "warehouse.duckdb"))
 
 
 @task
@@ -55,6 +52,7 @@ def validate(df: pl.DataFrame) -> pl.DataFrame:
 
 @task
 def load(df: pl.DataFrame) -> None:
+    db_path = str(Path(__file__).parent.parent / "duckdb" / "warehouse.duckdb")
     pipeline = dlt.pipeline(
         pipeline_name="titanic_pipeline",
         destination=dlt.destinations.duckdb(db_path),
