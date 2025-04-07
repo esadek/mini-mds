@@ -7,7 +7,7 @@
 
 Lightweight, open source, locally-hosted Modern Data Stack
 
-- Extract & Load: [dlt](https://dlthub.com/)
+- Extract and Load: [Polars](https://pola.rs/) and [dlt](https://dlthub.com/)
 - Data Quality: [Pandera](https://www.union.ai/pandera/)
 - Storage: [DuckDB](https://duckdb.org/)
 - Transformation: [dbt](https://www.getdbt.com/)
@@ -37,6 +37,21 @@ Visualize data:
 
 ```bash
 uv run dash/app.py
+```
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A(CSV) --> B[Polars]
+    subgraph Prefect
+        B --> C[Pandera]
+        C --> D[dlt]
+        E[dbt Core]
+    end
+    D --> F[(DuckDB)]
+    E <--> F
+    F --> G[Dash]
 ```
 
 ## Project Structure
